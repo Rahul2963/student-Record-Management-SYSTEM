@@ -1,0 +1,26 @@
+# Student Record Management System
+
+This is a simple full-stack web application built using Java, ANSI SQL, HTML, and CSS.  
+The system allows users to manage student records with basic CRUD (Create, Read, Update, Delete) operations.
+
+## Technologies Used
+
+- Frontend: HTML, CSS  
+- Backend: Java (JDBC, Servlets or basic Java classes)  
+- Database: MySQL (ANSI SQL queries)  
+- Server: Apache Tomcat (for deployment if using JSP/Servlets)
+
+## Features
+
+- Add new student records  
+- View all student records in a structured format  
+- Update existing student information  
+- Delete records from the database  
+- Simple and responsive UI using HTML & CSS
+
+## How It Works
+
+1. The frontend provides forms and tables to interact with data.
+2. The backend Java code connects to MySQL using JDBC.
+3. SQL queries follow ANSI standards for portability and simplicity.
+4. Each action (add, view, update, delete) is handled by corresponding Java logic and SQL operations.
