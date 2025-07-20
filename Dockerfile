@@ -1,25 +1,22 @@
-# Use a base image with Java 17
-FROM openjdk:17-jdk
+# Use Java 17 base image
+FROM openjdk:17
 
-# Create working directory
+# Set working directory
 WORKDIR /app
 
-# Copy source files and dependencies
+# Copy Java source files and dependencies
 COPY ./src ./src
-COPY ./web ./web
 COPY gson-2.10.1.jar gson-2.10.1.jar
 COPY mysql-connector-j-9.3.0.jar mysql-connector-j-9.3.0.jar
 
-# Optional: Install findutils (if you prefer using find)
-# RUN apt-get update && apt-get install -y findutils
-
-# Compile Java source files
+# Compile Java source files (simplified)
 RUN mkdir out && \
-    find src -name "*.java" > sources.txt && \
-    javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" -d out @sources.txt
+    javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" \
+    -d out \
+    $(find ./src -name "*.java")
 
-# Expose Render's PORT (Render injects PORT environment variable)
+# Expose port (if needed)
 EXPOSE 8000
 
-# Run the main class (adjust package path if needed)
+# Run main class (adjust package as needed)
 CMD ["sh", "-c", "java -cp 'out:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar' com.student.Main"]
