@@ -10,8 +10,11 @@ COPY ./web ./web
 COPY gson-2.10.1.jar gson-2.10.1.jar
 COPY mysql-connector-j-9.3.0.jar mysql-connector-j-9.3.0.jar
 
-# Compile Java source files
-RUN mkdir out && javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" -d out $(find src -name "*.java")
+# Optional: Install findutils (if you prefer using find)
+# RUN apt-get update && apt-get install -y findutils
+
+# Compile Java source files (simplified)
+RUN mkdir out && javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" -d out src/**/*.java
 
 # Expose Render's PORT (Render injects PORT environment variable)
 EXPOSE 8000
