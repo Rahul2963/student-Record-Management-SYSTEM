@@ -13,8 +13,10 @@ COPY mysql-connector-j-9.3.0.jar mysql-connector-j-9.3.0.jar
 # Optional: Install findutils (if you prefer using find)
 # RUN apt-get update && apt-get install -y findutils
 
-# Compile Java source files (simplified)
-RUN mkdir out && javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" -d out src/**/*.java
+# Compile Java source files
+RUN mkdir out && \
+    find src -name "*.java" > sources.txt && \
+    javac -cp ".:gson-2.10.1.jar:mysql-connector-j-9.3.0.jar" -d out @sources.txt
 
 # Expose Render's PORT (Render injects PORT environment variable)
 EXPOSE 8000
